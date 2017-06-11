@@ -27,9 +27,12 @@
   (add-hook 'git-commit-mode-hook 'goto-address-mode))
 
 
+(maybe-require-package 'magit-gitflow)
+
 (when *is-a-mac*
   (after-load 'magit
-    (add-hook 'magit-mode-hook (lambda () (local-unset-key [(meta h)])))))
+    (add-hook 'magit-mode-hook (lambda () (local-unset-key [(meta h)])))
+    (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
 
 
 
@@ -74,6 +77,5 @@
 (maybe-require-package 'git-messenger)
 ;; Though see also vc-annotate's "n" & "p" bindings
 (global-set-key (kbd "C-x v p") #'git-messenger:popup-message)
-
 
 (provide 'init-git)
